@@ -1,11 +1,9 @@
--- Lists all genres of the show Dexter in the database hbtn_0d_tvshows.
--- Records are ordered by ascending genre name.
-SELECT g.`name`
-  FROM `tv_genres` AS g
-       INNER JOIN `tv_show_genres` AS s
-       ON g.`id` = s.`genre_id`
-
-       INNER JOIN `tv_shows` AS t
-       ON t.`id` = s.`show_id`
-       WHERE t.`title` = "Dexter"
- ORDER BY g.`name`;
+-- lists all shows contained in the database
+SELECT tv_shows.title
+FROM tv_shows
+    INNER JOIN tv_show_genres
+    ON tv_show_genres.show_id = tv_shows.id
+    INNER JOIN tv_genres
+    ON tv_genres.id = tv_show_genres.genre_id
+WHERE tv_genres.name = "Comedy"
+ORDER BY tv_shows.title
